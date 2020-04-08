@@ -3,57 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tests
 
 
-// Егор, Вика
-// В этом файле находится скелет для создания вами тестов
-// Я уже создал тест для проверки того, как работают нажатия на кнопки '0' - '9'
-// Вы можете смотреть на его структуру, чтобы понять, как он должен работать
-// Здесь кратко объясняю что происходит
-// **************************************
-// ivs_project2.Form1 testedForm = new ivs_project2.Form1();
-// Так мы создаем новый объект testedForm. По сути это и является нашим калькуляторм, далее все операции проводятся над ним
-// 
-// У него есть свойство testedForm.label_result.Text, в нем содержиться текст который на данный момент отображается на калькуляторе
-// Как вы понимаете, чтобы проверить что происходит, результаты вычислений и тд, нужно обращаться к этому свойству
-// Изначально свойство testedForm.label_result.Text равно "...", это типа базовая надпись, которая отображается
-// 
-// После нажатия на какую-лио кнопку, текст меняется, и вы должны это протестировать
-// Например вы просимулировали нажатие на кнопку '1', и значение testedForm.label_result.Text уже должно быть не "..." а "1"
-// потом нажали на кнопку '2' и значение testedForm.label_result.Text уже должно быть "12" и тд
-// Так вы должны эмулировть нажатие на кнопки и проверять то, что сейчас отображается
-//
-// Эмулировать нажатие на кнопки просто - нужно написать подобную конструкцию
-// testedForm.button_1_Click(testedForm, e);
-// Где button_1_Click - это нужная команда:
-//
-// button_n_Click - кнопки цифр n 0-9
-//
-// button_remove_Click - кнопка "назад" '<'
-//
-// button_delete_Click - кнопка "удалить"
-//
-// button_dot_Click - кнопка "точки"  ','
-//
-// button_plus_Click - кнопка "плюс"  '+'
-//
-// button_minus_Click - кнопка "минус"  '-'
-//
-// button_multiply_Click - кнопка "умножить"  '*'
-//
-// button_divide_Click - кнопка "разделить"  '.'
-//
-// button_equal_Click - кнопка "равно"  '='
-//
-// button_degree_Click - кнопка "возведение в степень"  '^'
-//
-// button_radical_Click - кнопка "извлечение корня"  '√'
-//
-// button_percent_Click - кнопка "подсчет процента"  '%'
-//
-// button_factorial_Click - кнопка "факториал"  '!'
-//
-//
-// Тесты запускаются если сверху нажать на "Тест" -> "Запуск всех тестов"
-// **************************************
+// ***************************************************
 
 {
     [TestClass]
@@ -119,7 +69,38 @@ namespace Tests
         // Created by Yahor Senichak
         public void PlusTests()
         {
-            // Write tests of plus here
+            ivs_project2.Form1 testedForm = new ivs_project2.Form1();
+            EventArgs e = new EventArgs();
+
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_plus_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("46"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_dot_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+
+            testedForm.button_plus_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("46,23"));
+
+            testedForm.button_delete_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_plus_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("0"));
         }
 
         [TestMethod]
@@ -128,7 +109,51 @@ namespace Tests
         // Created by Viktoryia Tomason
         public void MinusTests()
         {
-            // Write tests here
+            ivs_project2.Form1 testedForm = new ivs_project2.Form1();
+            EventArgs e = new EventArgs();
+            // Emulation of clicking on buttons '-' 
+            testedForm.button_minus_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("..."));
+
+            testedForm.button_minus_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("..."));
+
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_minus_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("0"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_7_Click(testedForm, e);
+            testedForm.button_8_Click(testedForm, e);
+            testedForm.button_dot_Click(testedForm, e);
+            testedForm.button_9_Click(testedForm, e);
+            testedForm.button_minus_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_dot_Click(testedForm, e);
+            testedForm.button_9_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+
+            Assert.IsTrue(testedForm.label_result.Text.Equals("78"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_minus_Click(testedForm, e);
+            testedForm.button_minus_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("..."));
+
+            testedForm.button_1_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_plus_Click(testedForm, e);
+            testedForm.button_7_Click(testedForm, e);
+            testedForm.button_minus_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("19"));
         }
 
         [TestMethod]
@@ -137,7 +162,53 @@ namespace Tests
         // Created by Yahor Senichak
         public void MultiplyTests()
         {
-            // Write tests here
+            ivs_project2.Form1 testedForm = new ivs_project2.Form1();
+            EventArgs e = new EventArgs();
+
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_multiply_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("529"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_multiply_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("0"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_dot_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_multiply_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("0"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_dot_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_multiply_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_dot_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_multiply_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("539,6329‬"));
         }
 
         [TestMethod]
@@ -146,7 +217,77 @@ namespace Tests
         // Created by Viktoryia Tomason
         public void DivideTests()
         {
-            // Write tests here
+            ivs_project2.Form1 testedForm = new ivs_project2.Form1();
+            EventArgs e = new EventArgs();
+            // Emulation of clicking on buttons '/' 
+            testedForm.button_divide_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("..."));
+
+            testedForm.button_divide_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("..."));
+
+            testedForm.button_divide_Click(testedForm, e);
+            testedForm.button_divide_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("..."));
+
+            testedForm.button_remove_Click(testedForm, e);
+
+            testedForm.button_7_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_divide_Click(testedForm, e);
+            testedForm.button_9_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("8"));
+            testedForm.button_divide_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("4"));
+            testedForm.button_equal_Click(testedForm, e);//with equal
+            testedForm.button_divide_Click(testedForm, e);
+            testedForm.button_4_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("1"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_1_Click(testedForm, e);
+            testedForm.button_5_Click(testedForm, e);
+            testedForm.button_divide_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("1"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_dot_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_5_Click(testedForm, e);
+            testedForm.button_divide_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_dot_Click(testedForm, e);
+            testedForm.button_1_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+
+            Assert.IsTrue(testedForm.label_result.Text.Equals("0,5"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_4_Click(testedForm, e);
+            testedForm.button_divide_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("Error"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_8_Click(testedForm, e);
+            testedForm.button_5_Click(testedForm, e);
+            testedForm.button_divide_Click(testedForm, e);
+            testedForm.button_5_Click(testedForm, e);
+            testedForm.button_plus_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("34"));
         }
 
         [TestMethod]
@@ -155,7 +296,39 @@ namespace Tests
         // Created by Yahor Senichak and Viktoryia Tomason
         public void EqualTests()
         {
-            // Write tests here
+            // Creating of new object for testing
+            ivs_project2.Form1 testedForm = new ivs_project2.Form1();
+            EventArgs e = new EventArgs();
+            // Emulation of clicking on buttons '=' 
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("..."));
+
+            testedForm.button_4_Click(testedForm, e);
+            testedForm.button_5_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+
+            // Controlling if current text on the panel is equal to
+            Assert.IsTrue(testedForm.label_result.Text.Equals("45"));
+
+            testedForm.button_remove_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+
+            Assert.IsTrue(testedForm.label_result.Text.Equals("4"));
+
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("4"));
+
+            testedForm.button_remove_Click(testedForm, e);
+
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_dot_Click(testedForm, e);
+            testedForm.button_6_Click(testedForm, e);
+
+            Assert.IsTrue(testedForm.label_result.Text.Equals("2,6"));
+
+            testedForm.button_remove_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("2"));
         }
 
         [TestMethod]
@@ -164,7 +337,92 @@ namespace Tests
         // Created by Yahor Senichak
         public void DegreeTests()
         {
-            // Write tests here
+            ivs_project2.Form1 testedForm = new ivs_project2.Form1();
+            EventArgs e = new EventArgs();
+
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_degree_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsFalse(testedForm.label_result.Text.Equals("8"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_1_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_3_Click(testedForm, e);
+            testedForm.button_4_Click(testedForm, e);
+            testedForm.button_degree_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsFalse(testedForm.label_result.Text.Equals("1"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_degree_Click(testedForm, e);
+            testedForm.button_9_Click(testedForm, e);
+            testedForm.button_9_Click(testedForm, e);
+            testedForm.button_9_Click(testedForm, e);
+            testedForm.button_9_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsFalse(testedForm.label_result.Text.Equals("0"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_dot_Click(testedForm, e);
+            testedForm.button_5_Click(testedForm, e);
+            testedForm.button_degree_Click(testedForm, e);
+            testedForm.button_1_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsFalse(testedForm.label_result.Text.Equals("0,0009765625"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_1_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_degree_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_dot_Click(testedForm, e);
+            testedForm.button_5_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsFalse(testedForm.label_result.Text.Equals("10‬"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_dot_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_5_Click(testedForm, e);
+            testedForm.button_degree_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_dot_Click(testedForm, e);
+            testedForm.button_5_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsFalse(testedForm.label_result.Text.Equals("0,5"));
+
+            testedForm.button_delete_Click(testedForm, e);
+            /*
+            testedForm.button_minus_Click(testedForm, e);
+            testedForm.button_5_Click(testedForm, e);
+            testedForm.button_degree_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsFalse(testedForm.label_result.Text.Equals("25"));
+
+            testedForm.button_delete_Click(testedForm, e);
+            
+            
+            testedForm.button_10_Click(testedForm, e);
+            testedForm.button_degree_Click(testedForm, e);
+            testedForm.button_minus_Click(testedForm, e);
+            testedForm.button_1_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsFalse(testedForm.label_result.Text.Equals("0,1"));
+            */
         }
 
         [TestMethod]
@@ -173,7 +431,64 @@ namespace Tests
         // Created by Viktoryia Tomason
         public void RadicalTests()
         {
-            // Write tests here
+            ivs_project2.Form1 testedForm = new ivs_project2.Form1();
+            EventArgs e = new EventArgs();
+
+            // Emulation of clicking on buttons '√'
+            testedForm.button_radical_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("2"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_5_Click(testedForm, e);
+            testedForm.button_6_Click(testedForm, e);
+            testedForm.button_radical_Click(testedForm, e);
+            testedForm.button_4_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+
+            // Controlling if current text on the panel is equal to
+            Assert.IsTrue(testedForm.label_result.Text.Equals("4"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            //!!!!ДОДЕЛАТЬ!!!!
+            //testedForm.button_BINminus_Click(testedForm, e); "-"!!!если такая кнопка будет
+            //testedForm.button_8_Click(testedForm, e);
+            //testedForm.button_radical_Click(testedForm, e);
+            //testedForm.button_3_Click(testedForm, e);
+            //testedForm.button_equal_Click(testedForm, e);
+
+            // Controlling if current text on the panel is equal to
+            // Assert.IsTrue(testedForm.label_result.Text.Equals("-2"));
+
+            //testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_4_Click(testedForm, e);
+            testedForm.button_8_Click(testedForm, e);
+            testedForm.button_radical_Click(testedForm, e);
+            testedForm.button_1_Click(testedForm, e);
+            testedForm.button_1_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+
+            // Controlling if current text on the panel is equal to
+            Assert.IsTrue(testedForm.label_result.Text.Equals("2"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            //!!!ДОДЕЛАТЬ!!!
+            //testedForm.button_2_Click(testedForm, e); 
+            //testedForm.button_5_Click(testedForm, e);
+            //testedForm.button_radical_Click(testedForm, e);
+            //testedForm.button_BINminus_Click(testedForm, e); "-"!!! 
+            //testedForm.button_2_Click(testedForm, e);
+            //testedForm.button_equal_Click(testedForm, e);
+
+            // Controlling if current text on the panel is equal to//
+            //Assert.IsTrue(testedForm.label_result.Text.Equals("Error"));//Степень не может быть отрицательной
         }
 
         [TestMethod]
@@ -182,7 +497,68 @@ namespace Tests
         // Created by Viktoryia Tomason
         public void PercentTests()
         {
-            // Write tests here
+            // Creating of new object for testing
+            ivs_project2.Form1 testedForm = new ivs_project2.Form1();
+            EventArgs e = new EventArgs();
+            // Emulation of clicking on buttons '%'
+            testedForm.button_percent_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("..."));
+
+            testedForm.button_percent_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("..."));
+
+            testedForm.button_6_Click(testedForm, e);
+            testedForm.button_percent_Click(testedForm, e);
+            testedForm.button_2_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+
+            // Controlling if current text on the panel is equal to
+            Assert.IsTrue(testedForm.label_result.Text.Equals("1,2"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_9_Click(testedForm, e);
+            testedForm.button_percent_Click(testedForm, e);
+            testedForm.button_1_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+
+            // Controlling if current text on the panel is equal to
+            Assert.IsTrue(testedForm.label_result.Text.Equals("9"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_7_Click(testedForm, e);
+            testedForm.button_percent_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_dot_Click(testedForm, e);
+            testedForm.button_5_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+
+            // Controlling if current text on the panel is equal to
+            Assert.IsTrue(testedForm.label_result.Text.Equals("0,035"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_4_Click(testedForm, e);
+            testedForm.button_percent_Click(testedForm, e);
+            testedForm.button_1_Click(testedForm, e);
+            testedForm.button_5_Click(testedForm, e);
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+
+            // Controlling if current text on the panel is equal to
+            Assert.IsTrue(testedForm.label_result.Text.Equals("6"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+            testedForm.button_6_Click(testedForm, e);
+            testedForm.button_percent_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("0,36"));
         }
 
         [TestMethod]
@@ -191,7 +567,50 @@ namespace Tests
         // Created by Yahor Senichak
         public void FactorialTests()
         {
-            // Write tests here
+            ivs_project2.Form1 testedForm = new ivs_project2.Form1();
+            EventArgs e = new EventArgs();
+
+
+            Assert.IsFalse(testedForm.label_result.Text.Equals("..."));
+
+            testedForm.button_factorial_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("...")); //хз работает так или нет
+            testedForm.button_delete_Click(testedForm, e);
+
+
+            testedForm.button_5_Click(testedForm, e);
+            testedForm.button_factorial_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("120"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+
+            testedForm.button_10_Click(testedForm, e);
+            testedForm.button_factorial_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("3628800"));
+
+            testedForm.button_delete_Click(testedForm, e);
+
+
+            testedForm.button_0_Click(testedForm, e);
+            testedForm.button_factorial_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("1"));
+
+            testedForm.button_delete_Click(testedForm, e);
+            /*
+            testedForm.button_factorial_Click(testedForm, e);
+            testedForm.button_minus_Click(testedForm, e);
+            testedForm.button_10_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("Error"));
+            
+            testedForm.button_delete_Click(testedForm, e);
+            */
+
+            testedForm.button_17_Click(testedForm, e);
+            testedForm.button_factorial_Click(testedForm, e);
+            testedForm.button_equal_Click(testedForm, e);
+            Assert.IsTrue(testedForm.label_result.Text.Equals("355687428096000"));
         }
     }
 }
