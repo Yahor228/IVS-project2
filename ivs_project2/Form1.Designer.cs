@@ -50,6 +50,7 @@
             this.button_minus = new System.Windows.Forms.Button();
             this.button_degree = new System.Windows.Forms.Button();
             this.panel_result = new System.Windows.Forms.Panel();
+            this.button_sign = new System.Windows.Forms.Button();
             this.button_delete = new System.Windows.Forms.Button();
             this.button_remove = new System.Windows.Forms.Button();
             this.label_result = new System.Windows.Forms.Label();
@@ -338,6 +339,7 @@
             // 
             // panel_result
             // 
+            this.panel_result.Controls.Add(this.button_sign);
             this.panel_result.Controls.Add(this.button_delete);
             this.panel_result.Controls.Add(this.button_remove);
             this.panel_result.Controls.Add(this.label_result);
@@ -345,6 +347,18 @@
             this.panel_result.Name = "panel_result";
             this.panel_result.Size = new System.Drawing.Size(765, 100);
             this.panel_result.TabIndex = 20;
+            // 
+            // button_sign
+            // 
+            this.button_sign.BackColor = System.Drawing.Color.Silver;
+            this.button_sign.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_sign.Location = new System.Drawing.Point(602, 0);
+            this.button_sign.Name = "button_sign";
+            this.button_sign.Size = new System.Drawing.Size(49, 100);
+            this.button_sign.TabIndex = 3;
+            this.button_sign.Text = "+/-";
+            this.button_sign.UseVisualStyleBackColor = false;
+            this.button_sign.Click += new System.EventHandler(this.button_sign_Click);
             // 
             // button_delete
             // 
@@ -445,6 +459,7 @@
         public System.Windows.Forms.Label label_result;
         public System.Windows.Forms.Button button_remove;
         public System.Windows.Forms.Button button_delete;
+        public System.Windows.Forms.Button button_sign;
     }
 }
 

@@ -112,6 +112,16 @@ namespace ivs_project2
         }
 
 
+        //  Processing event of pushing the sign change button '+/-'
+        private void button_sign_Click(object sender, EventArgs e)
+        {
+            buttonInts('-');
+            result = -result;
+
+        }
+
+
+
         //  Processing event of pushing the button representing input/output screen clearing 'C'
         public void button_delete_Click(object sender, EventArgs e)
         {
@@ -395,6 +405,22 @@ namespace ivs_project2
         // !!!!!!!!!!!!!!!!!!!!! ДОПИСАТЬ КОММЕНТАРИИ, РЕФАКТОРИНГ КОДА !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public void buttonInts(int value)
         {
+
+            // Processing sign change
+            if (value == '-')
+            {
+                if (!label_result.Text.Equals("..."))
+                {
+                    if (label_result.Text[0] == '-')
+                        label_result.Text = label_result.Text.Remove(0, 1);
+                    else
+                        label_result.Text = label_result.Text.Insert(0, "-");
+                }
+
+                return;
+            }
+
+
             // In case of pushing a mathematical operation button, and if after this event user has not entered data, clears information on panel and begins input on a empty line
             if (!wasInput)
             {
@@ -432,11 +458,6 @@ namespace ivs_project2
                 return;
             }
 
-            else if (value == '+')
-            {
-                label_result.Text = "...";
-                return;
-            }
 
 
             // Processing numbers or ','
