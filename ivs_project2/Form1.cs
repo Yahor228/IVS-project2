@@ -304,13 +304,26 @@ namespace ivs_project2
                 if (wasInput)
                 {
                     tmp = Convert.ToDouble(label_result.Text);
-                    result = Math.Pow(result, 1 / Convert.ToDouble(label_result.Text));
+
+                    if (result < 0 && Convert.ToDouble(label_result.Text) % 2 == 1)
+                        result = Math.Sign(result) * Math.Pow(Math.Abs(result), 1 / Convert.ToDouble(label_result.Text));
+                    else if (result < 0 && Convert.ToDouble(label_result.Text) % 2 != 1)
+                        result = 0;
+                    else
+                        result = Math.Pow(result, 1 / Convert.ToDouble(label_result.Text));
+
                     label_result.Text = result.ToString();
                     wasInput = false;
                 }
                 else
                 {
-                    result = Math.Pow(result, 1 / tmp);
+                    if (result < 0 && tmp % 2 == 1)
+                        result = Math.Sign(result) * Math.Pow(Math.Abs(result), 1 / tmp);
+                    else if (result < 0 && tmp % 2 != 1)
+                        result = 0;
+                    else
+                        result = Math.Pow(result, 1 / tmp);
+                
                     label_result.Text = result.ToString();
                 }
             }
@@ -395,8 +408,15 @@ namespace ivs_project2
             else if (op == '^')
                 result = Math.Pow(result, Convert.ToDouble(label_result.Text));
             else if (op == '√')
-                result = Math.Pow(result, 1 / Convert.ToDouble(label_result.Text));
-            else if (op == '%')
+            {
+                if (result < 0 && Convert.ToDouble(label_result.Text) % 2 == 1)
+                    result = Math.Sign(result) * Math.Pow(Math.Abs(result), 1 / Convert.ToDouble(label_result.Text));
+                else if (result < 0 && Convert.ToDouble(label_result.Text) % 2 != 1)
+                    result = 0;
+                else
+                    result = Math.Pow(result, 1 / Convert.ToDouble(label_result.Text));
+            }
+            else if (op == '%') 
                 result = result / 100 * Convert.ToDouble(label_result.Text);
         }
 
@@ -405,6 +425,7 @@ namespace ivs_project2
         // !!!!!!!!!!!!!!!!!!!!! ДОПИСАТЬ КОММЕНТАРИИ, РЕФАКТОРИНГ КОДА !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public void buttonInts(int value)
         {
+            
 
             // Processing sign change
             if (value == '-')
